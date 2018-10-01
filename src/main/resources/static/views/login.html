@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/w3.css">
+    <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
+    <style>
+        *:focus {
+            outline: none;
+        }
+
+        body {
+            background-image: url("../images/Background.jpg");
+        }
+
+        input.w3-input:focus {
+            outline: none;
+            border-color: black;
+            border-bottom-width: medium;
+        }
+    </style>
+</head>
+
+<body>
+<header class="w3-container w3-white w3-center w3-opacity-max">
+    <h1>HOME</h1>
+</header>
+
+<div class="w3-container w3-third w3-center w3-margin-top w3-animate-bottom">
+    <img src="../images/LoginImage.png" class="w3-image" style="max-width: 40%;">
+</div>
+
+
+<div class="w3-container w3-third w3-margin-top w3-animate-zoom">
+
+    <form class="w3-container w3-card-4 w3-white w3-round-xlarge" style="opacity: 0.5;">
+
+        <p>
+            <input class="w3-input w3-hover-shadow" type="email"
+                   placeholder="example@domain.com" style="width:90%" required title="username">
+            <label>Username</label></p>
+        <p>
+            <input class="w3-input w3-hover-shadow" type="password"
+                   style="width:90%" required title="password">
+            <label>Password</label></p>
+
+        <p class="w3-center">
+            <button class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow">
+                LOG IN
+            </button>
+        </p>
+
+    </form>
+
+</div>
+
+<div class="w3-container w3-third w3-center w3-margin-top w3-animate-left">
+    <p>
+        If you do not have an account<br>please use the button below to sign up
+    </p>
+    <button class="w3-button w3-white w3-card-4 w3-round-large w3-opacity-min w3-hover-shadow">
+        SIGN UP
+    </button>
+</div>
+
+</body>
+</html>

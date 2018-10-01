@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sales Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/w3.css">
+    <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
+    <style>
+        *:focus {
+            outline: none;
+        }
+
+        input.w3-input:focus {
+            outline: none;
+            border-color: black;
+            border-bottom-width: medium;
+        }
+
+        body {
+            background-color: silver;
+        }
+
+        div.longHeight {
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-black w3-card-4 w3-opacity-min">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+           href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fas fa-bars"></i>
+        </a>
+        <a href="#place" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PLACE ORDER</a>
+        <a href="#cancel" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CANCEL ORDER</a>
+        <a href="#orders" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ORDERS</a>
+        <a href="#shipment" class="w3-bar-item w3-button w3-padding-large w3-hide-small">SHIPMENT</a>
+        <a href="#invoice" class="w3-bar-item w3-button w3-padding-large w3-hide-small">INVOICE</a>
+        <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right">
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
+    </div>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top w3-opacity-min" style="margin-top:46px">
+    <a href="#place" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">PLACE ORDER</a>
+    <a href="#cancel" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CANCEL ORDER</a>
+    <a href="#orders" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">ORDERS</a>
+    <a href="#shipment" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">SHIPMENT</a>
+    <a href="#invoice" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">INVOICE</a>
+    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-button">
+        <i class="fas fa-sign-out-alt"></i>
+        LOG OUT</a>
+</div>
+
+<div style="margin-top: 50px;">
+    <div id="place" class="w3-container w3-margin longHeight w3-card-4" style="background-color: rgba(255,172,0,0.25)">
+
+    </div>
+
+    <div id="cancel" class="w3-container w3-margin longHeight w3-card-4" style="background-color: rgba(202,0,255,0.25)">
+
+    </div>
+
+    <div id="orders" class="w3-container w3-margin longHeight w3-margin w3-card-4" style="background-color: rgba(10,255,0,0.25)">
+
+    </div>
+
+    <div id="shipment" class="w3-container w3-margin longHeight w3-margin w3-card-4" style="background-color: rgba(0,61,255,0.25)">
+
+    </div>
+
+    <div id="invoice" class="w3-container w3-margin longHeight w3-margin w3-card-4" style="background-color: rgba(255,23,0,0.25)">
+
+    </div>
+
+</div>
+
+<script>
+    // language=JQuery-CSS
+    $("a[href^='#']").click(function(e) {
+        e.preventDefault();
+
+        var position = $($(this).attr("href")).offset().top;
+
+        $("body, html").animate({
+            scrollTop: position - 50
+        } /* speed */ );
+    });
+</script>
+<script>
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+</body>
+</html>
