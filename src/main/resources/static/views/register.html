@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <title>Registration Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/w3.css">
     <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
@@ -25,11 +25,11 @@
 
 <body>
 <header class="w3-container w3-white w3-center w3-opacity-max">
-    <h1>LOGIN</h1>
+    <h1>REGISTRATION</h1>
 </header>
 
 <div class="w3-container w3-third w3-center w3-margin-top w3-animate-bottom">
-    <img src="../images/LoginImage.png" class="w3-image" style="max-width: 40%;">
+    <img src="../images/register.png" class="w3-image" style="max-width: 40%;">
 </div>
 
 
@@ -38,17 +38,27 @@
     <form class="w3-container w3-card-4 w3-white w3-round-xlarge" style="opacity: 0.5;">
 
         <p>
-            <input class="w3-input w3-hover-shadow" type="email"
-                   placeholder="example@domain.com" style="width:90%" required title="username">
+            <input class="w3-input w3-hover-shadow" name="email" type="email"
+                   placeholder="example@domain.com" style="width:90%" title="email" required>
             <label>Email</label></p>
         <p>
-            <input class="w3-input w3-hover-shadow" type="password"
-                   style="width:90%" required title="password">
+            <input class="w3-input w3-hover-shadow" name="password" type="password"
+                   style="width:90%" title="password" required>
             <label>Password</label></p>
+
+        <p>
+            <input class="w3-input w3-hover-shadow" name="firstName" type="text"
+                   placeholder="Your First Name" style="width:90%" title="firstName" required>
+            <label>First Name</label></p>
+
+        <p>
+            <input class="w3-input w3-hover-shadow" name="lastName" type="text"
+                   placeholder="Your Last Name" style="width:90%" title="lastName" required>
+            <label>Last Name</label></p>
 
         <p class="w3-center">
             <button class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow">
-                LOG IN
+                REGISTER
             </button>
         </p>
 
@@ -58,11 +68,11 @@
 
 <div class="w3-container w3-third w3-center w3-margin-top w3-animate-left">
     <p>
-        If you do not have an account<br>please use the button below to sign up
+        Login with existing account?
     </p>
     <button class="w3-button w3-white w3-card-4 w3-round-large w3-opacity-min w3-hover-shadow" type="button"
-            onclick="location.href='/register';">
-        SIGN UP
+            onclick="location.href='/login';">
+        Login
     </button>
 </div>
 
