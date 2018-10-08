@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/w3.css}">
+    <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
+    <style>
+        *:focus {
+            outline: none;
+        }
+
+        input.w3-input {
+            background-color: rgba(255, 251, 255, 0);
+        }
+
+        input.w3-input:focus {
+            outline: none;
+            border-color: black;
+            border-bottom-width: medium;
+        }
+    </style>
+</head>
+
+<body th:style="'background:url('+ @{/images/Background.jpg} +');'">
+<header class="w3-container w3-white w3-center w3-opacity-max">
+    <h1>LOGIN</h1>
+</header>
+
+<div class="w3-container w3-half w3-center w3-margin-top w3-animate-bottom">
+    <img th:src="@{/images/LoginImage.png}" class="w3-image" style="max-width: 40%;">
+</div>
+
+
+<div class="w3-container w3-half w3-margin-top w3-animate-zoom">
+
+    <form class="w3-container w3-card-4 w3-round-xlarge" action="/login" method="post"
+          style="background-color: rgba(255,251,255,0.5);">
+
+        <p>
+            <input class="w3-input w3-hover-shadow" type="text" name="username"
+                   style="width:90%" required title="username">
+            <label>Username</label></p>
+        <p>
+            <input class="w3-input w3-hover-shadow" type="password" name="password"
+                   style="width:90%" required title="password">
+            <label>Password</label></p>
+
+        <p class="w3-center">
+            <button class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow">
+                LOG IN
+            </button>
+        </p>
+
+    </form>
+
+</div>
+
+</body>
+</html>

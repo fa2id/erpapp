@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sales Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/w3.css" th:href="@{/css/w3.css}">
+    <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
+    <style>
+        *:focus {
+            outline: none;
+        }
+
+        hr {
+            border: 3px dashed black;
+        }
+
+        input.w3-input:focus {
+            outline: none;
+            border-color: black;
+            border-bottom-width: medium;
+        }
+
+    </style>
+</head>
+<body th:style="'background:url('+ @{/images/Background.jpg} +');'">
+
+<div class="w3-top">
+    <div class="w3-bar w3-black w3-card-4 w3-opacity-min">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+           href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fas fa-bars"></i>
+        </a>
+        <a href="#add" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ADD ITEM</a>
+        <a href="#remove" class="w3-bar-item w3-button w3-padding-large w3-hide-small">REMOVE ITEM</a>
+        <a href="#edit" class="w3-bar-item w3-button w3-padding-large w3-hide-small">EDIT ITEM</a>
+        <a href="/logout" class="w3-padding-large w3-hover-red w3-hide-small w3-right">
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
+    </div>
+</div>
+
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top w3-opacity-min" style="margin-top:46px">
+    <a href="#add" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">ADD ITEM</a>
+    <a href="#remove" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">REMOVE ITEM</a>
+    <a href="#edit" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">EDIT ITEM</a>
+    <a href="/logout" class="w3-padding-large w3-hover-red w3-button">
+        <i class="fas fa-sign-out-alt"></i>
+        LOG OUT</a>
+</div>
+
+<div style="margin-top: 50px;">
+    <div id="main" class="w3-container w3-margin w3-card-4" style="background-color: rgba(255,172,0,0.25)">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-building"></i>
+        </p>
+        <h3 class="w3-center">SCM PANEL</h3>
+        <hr>
+        <p class="w3-center">
+            Welcome to SCM Panel<br>
+            You can use the menu to navigate
+        </p>
+    </div>
+
+    <div id="add" class="w3-container w3-margin w3-card-4 my-section" style="background-color: rgba(255,172,0,0.25)">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-plus-circle"></i>
+        </p>
+        <h3 class="w3-center">ADD ITEM</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+
+                <form id="addForm" class="w3-container w3-card-4 w3-round-xlarge" action="/scm/add" method="post"
+                      style="background-color: rgba(255,251,255,0.5);">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                        Add Item Panel</h3>
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="itemName" type="text" min="0"
+                               style="width:90%" title="itemName" required>
+                        <label>Item Name</label></p>
+
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="itemQuantity" type="number" min="1"
+                               style="width:90%" title="itemQuantity" required>
+                        <label>Item Quantity</label></p>
+
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="itemPrice" type="number" min="1"
+                               style="width:90%" title="itemPrice" required>
+                        <label>Item Price</label></p>
+
+                    <p class="w3-center">
+                        <input type="submit" class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow"
+                               value="ADD ITEM">
+                    </p>
+
+                </form>
+
+            </div>
+            <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
+                <div class="w3-container w3-card-4 w3-round-xlarge">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
+                    <pre id="addFormResult">Result will be shown here.</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="remove" class="w3-container w3-margin w3-card-4 my-section" style="background-color: rgba(202,0,255,0.25)">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-minus-circle"></i>
+        </p>
+        <h3 class="w3-center">REMOVE ITEM</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+
+                <form id="removeForm" class="w3-container w3-card-4 w3-round-xlarge" action="/scm/remove" method="post"
+                      style="background-color: rgba(255,251,255,0.5);">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                        Remove Item Panel</h3>
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="itemId" type="number" min="0"
+                               style="width:90%" title="itemId" required>
+                        <label>Item ID</label></p>
+
+                    <p class="w3-center">
+                        <input type="submit" class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow"
+                               value="REMOVE ITEM">
+                    </p>
+
+                </form>
+
+            </div>
+            <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
+                <div class="w3-container w3-card-4 w3-round-xlarge">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
+                    <pre id="removeFormResult">Result will be shown here.</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit" class="w3-container w3-margin w3-margin w3-card-4 my-section" style="background-color: rgba(10,255,0,0.25)">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-edit"></i>
+        </p>
+        <h3 class="w3-center">EDIT ITEM</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+
+                <form id="editForm" class="w3-container w3-card-4 w3-round-xlarge" action="/scm/edit" method="post"
+                      style="background-color: rgba(255,251,255,0.5);">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                        Edit Item Panel</h3>
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="itemId" type="number" min="0"
+                               style="width:90%" title="itemId" required>
+                        <label>Item ID</label></p>
+
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="itemName" type="text" min="0"
+                               style="width:90%" title="itemName" required>
+                        <label>Item Name</label></p>
+
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="itemQuantity" type="number" min="1"
+                               style="width:90%" title="itemQuantity" required>
+                        <label>Item Quantity</label></p>
+
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="itemPrice" type="number" min="1"
+                               style="width:90%" title="itemPrice" required>
+                        <label>Item Price</label></p>
+
+                    <p class="w3-center">
+                        <input type="submit" class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow"
+                               value="EDIT ITEM">
+                    </p>
+
+                </form>
+
+            </div>
+            <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
+                <div class="w3-container w3-card-4 w3-round-xlarge">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
+                    <pre id="editFormResult">Result will be shown here.</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $("a[href^='#']").click(function(e) {
+        e.preventDefault();
+        $("#main").hide();
+        $(".my-section").hide();
+        $($(this).attr("href")).fadeIn();
+        $($(this).attr("href")).fadeIn("slow");
+        $($(this).attr("href")).fadeIn(3000);
+    });
+</script>
+<script>
+    $(".my-section").hide();
+    $("#main").fadeIn();
+</script>
+<script>
+    function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+<script>
+    $("form").submit(function (e) {
+
+        var form = $(this);
+        var url = form.attr('action');
+        var id = "#" + form.attr('id') + "Result";
+        var method = form.attr('method').toUpperCase();
+
+        $.ajax({
+            type: method,
+            url: url,
+            data: form.serialize(),
+            success: function (data) {
+                $(id).text(JSON.stringify(data, null, '\t'));
+            }
+        });
+
+        e.preventDefault();
+    });
+</script>
+</body>
+</html>

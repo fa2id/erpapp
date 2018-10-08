@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sales Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/w3.css" th:href="@{/css/w3.css}">
+    <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
+    <style>
+        *:focus {
+            outline: none;
+        }
+
+        hr {
+            border: 3px dashed black;
+        }
+
+        input.w3-input {
+            background-color: rgba(255, 251, 255, 0);
+        }
+
+        input.w3-input:focus {
+            outline: none;
+            border-color: black;
+            border-bottom-width: medium;
+        }
+
+    </style>
+</head>
+<body th:style="'background:url('+ @{/images/Background.jpg} +');'">
+
+<div class="w3-top">
+    <div class="w3-bar w3-black w3-card-4 w3-opacity-min">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+           href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fas fa-bars"></i>
+        </a>
+        <a href="#place" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PLACE ORDER</a>
+        <a href="#cancel" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CANCEL ORDER</a>
+        <a href="#orders" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ORDERS</a>
+        <a href="#shipment" class="w3-bar-item w3-button w3-padding-large w3-hide-small">SHIPMENT</a>
+        <a href="#invoice" class="w3-bar-item w3-button w3-padding-large w3-hide-small">INVOICE</a>
+        <a href="/logout" class="w3-padding-large w3-hover-red w3-hide-small w3-right">
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
+    </div>
+</div>
+
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top w3-opacity-min"
+     style="margin-top:46px">
+    <a href="#place" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">PLACE ORDER</a>
+    <a href="#cancel" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CANCEL ORDER</a>
+    <a href="#orders" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">ORDERS</a>
+    <a href="#shipment" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">SHIPMENT</a>
+    <a href="#invoice" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">INVOICE</a>
+    <a href="/logout" class="w3-padding-large w3-hover-red w3-button">
+        <i class="fas fa-sign-out-alt"></i>
+        LOG OUT</a>
+</div>
+
+<div style="margin-top: 50px;">
+    <div id="main" class="w3-container w3-margin w3-card-4" style="background-color: rgba(255,172,0,0.25)">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-shopping-basket"></i>
+        </p>
+        <h3 class="w3-center">SALES PANEL</h3>
+        <hr>
+        <p class="w3-center">
+            Welcome to Sales Panel<br>
+            You can use the menu to navigate
+        </p>
+    </div>
+
+    <div id="place" class="w3-container w3-margin w3-card-4 my-section"
+         style="background-color: rgba(255,172,0,0.25)">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-cart-arrow-down"></i>
+        </p>
+        <h3 class="w3-center">PLACE ORDER</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+
+                <form id="placeForm" class="w3-container w3-card-4 w3-round-xlarge" action="/sales/place" method="post"
+                      style="background-color: rgba(255,251,255,0.5);">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                        Customer Info</h3>
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="custId" type="number" min="0"
+                               style="width:90%" title="custId" required>
+                        <label>Customer ID</label></p>
+
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="custFirstName" type="text"
+                               style="width:90%" title="custFirstName" required>
+                        <label>Customer First Name</label></p>
+
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="custLastName" type="text"
+                               style="width:90%" title="custLastName" required>
+                        <label>Customer Last Name</label></p>
+
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-margin-top w3-opacity-max">
+                        Product Info</h3>
+
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="productId" type="number" min="0"
+                               style="width:90%" title="productId" required>
+                        <label>Product ID</label></p>
+
+                    <p>
+
+                        <input class="w3-input w3-hover-shadow" name="quantity" type="number" min="1"
+                               style="width:90%" title="quantity" required>
+                        <label>Quantity</label></p>
+
+
+                    <p class="w3-center">
+                        <input type="submit" class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow"
+                               value="PLACE ORDER">
+                    </p>
+
+                </form>
+
+            </div>
+            <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
+                <div class="w3-container w3-card-4 w3-round-xlarge">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
+                    <pre id="placeFormResult">Result will be shown here.</pre>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="cancel" class="w3-container w3-margin w3-card-4 my-section"
+         style="background-color: rgba(202,0,255,0.25)">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-trash-alt"></i>
+        </p>
+        <h3 class="w3-center">CANCEL ORDER</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+
+                <form id="cancelForm" class="w3-container w3-card-4 w3-round-xlarge" action="/sales/cancel"
+                      method="post"
+                      style="background-color: rgba(255,251,255,0.5);">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                        Order Info</h3>
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="orderId" type="number" min="0"
+                               style="width:90%" title="orderId" required>
+                        <label>Order ID</label></p>
+
+
+                    <p class="w3-center">
+                        <input type="submit" class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow"
+                               value="CANCEL ORDER">
+                    </p>
+
+                </form>
+
+            </div>
+            <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
+                <div class="w3-container w3-card-4 w3-round-xlarge">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
+                    <pre id="cancelFormResult">Result will be shown here.</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="orders" class="w3-container w3-margin w3-margin w3-card-4 my-section"
+         style="background-color: rgba(10,255,0,0.25)">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-th-list"></i>
+        </p>
+        <h3 class="w3-center">ORDERS</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+
+                <form id="ordersForm" class="w3-container w3-card-4 w3-round-xlarge" action="/sales/orders"
+                      method="get"
+                      style="background-color: rgba(255,251,255,0.5);">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                        Orders Panel</h3>
+
+                    <p class="w3-center">
+                        <input type="submit" class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow"
+                               value="GET ALL ORDERS">
+                    </p>
+
+                </form>
+
+            </div>
+            <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
+                <div class="w3-container w3-card-4 w3-round-xlarge">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
+                    <pre id="ordersFormResult">Result will be shown here.</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="shipment" class="w3-container w3-margin w3-margin w3-card-4 my-section"
+         style="background-color: rgba(0,61,255,0.25)">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-truck"></i>
+        </p>
+        <h3 class="w3-center">SHIPMENT</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+
+                <form id="shipmentForm" class="w3-container w3-card-4 w3-round-xlarge" action="/sales/shipment"
+                      method="get"
+                      style="background-color: rgba(255,251,255,0.5);">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                        Shipment Panel</h3>
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="orderId" type="number" min="0"
+                               style="width:90%" title="orderId" required>
+                        <label>Order ID</label></p>
+
+
+                    <p class="w3-center">
+                        <input type="submit" class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow"
+                               value="GET STATUS">
+                    </p>
+
+                </form>
+
+            </div>
+            <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
+                <div class="w3-container w3-card-4 w3-round-xlarge">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
+                    <pre id="shipmentFormResult">Result will be shown here.</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="invoice" class="w3-container w3-margin w3-margin w3-card-4 my-section"
+         style="background-color: rgba(255,23,0,0.25)">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-file-invoice-dollar"></i>
+        </p>
+        <h3 class="w3-center">INVOICE</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+
+                <form id="invoiceForm" class="w3-container w3-card-4 w3-round-xlarge" action="/sales/invoice"
+                      method="get"
+                      style="background-color: rgba(255,251,255,0.5);">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                        Invoice Panel</h3>
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="orderId" type="number" min="0"
+                               style="width:90%" title="orderId" required>
+                        <label>Order ID</label></p>
+
+
+                    <p class="w3-center">
+                        <input type="submit" class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow"
+                               value="GET INVOICE">
+                    </p>
+
+                </form>
+
+            </div>
+            <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
+                <div class="w3-container w3-card-4 w3-round-xlarge">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
+                    <pre id="invoiceFormResult">Result will be shown here.</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $("a[href^='#']").click(function (e) {
+        e.preventDefault();
+        $("#main").hide();
+        $(".my-section").hide();
+        $($(this).attr("href")).fadeIn();
+        $($(this).attr("href")).fadeIn("slow");
+        $($(this).attr("href")).fadeIn(3000);
+    });
+</script>
+<script>
+    $(".my-section").hide();
+    $("#main").fadeIn();
+</script>
+<script>
+    function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+<script>
+    $("form").submit(function (e) {
+
+        var form = $(this);
+        var url = form.attr('action');
+        var id = "#" + form.attr('id') + "Result";
+        var method = form.attr('method').toUpperCase();
+
+        $.ajax({
+            type: method,
+            url: url,
+            data: form.serialize(),
+            success: function (data) {
+                $(id).text(JSON.stringify(data, null, '\t'));
+            }
+        });
+
+        e.preventDefault();
+    });
+</script>
+
+</body>
+</html>

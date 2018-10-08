@@ -9,18 +9,18 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value = "/sales")
-public class SalesController {
+@RequestMapping(value = "/scm")
+public class ScmController {
 
     @RequestMapping(value = "/panel")
     public ModelAndView getPanel() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("sales-panel");
+        modelAndView.setViewName("scm-panel");
         return modelAndView;
     }
 
     @RequestMapping(
-            value = {"/place", "/cancel", "/orders", "/shipment", "/invoice"},
+            value = {"/add", "/remove", "/edit"},
             consumes = {"text/plain", "application/*"})
     @ResponseBody
     public Map<String, String> placeOrder(@RequestParam Map<String, String> body) {

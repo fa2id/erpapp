@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/css/w3.css" th:href="@{/css/w3.css}">
+    <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
+    <style>
+        *:focus {
+            outline: none;
+        }
+
+        input.w3-input {
+            background-color: rgba(255, 251, 255, 0);
+        }
+
+        input.w3-input:focus {
+            outline: none;
+            border-color: black;
+            border-bottom-width: medium;
+        }
+    </style>
+</head>
+
+<body th:style="'background:url('+ @{/images/Background.jpg} +');'">
+<header class="w3-container w3-white w3-center w3-opacity-max">
+    <h1>ADMIN PANEL</h1>
+</header>
+
+<div class="w3-container w3-half w3-center w3-margin-top w3-animate-bottom">
+    <img th:src="@{/images/register.png}" class="w3-image" style="max-width: 40%;"><br>
+    <button class="w3-button w3-white w3-margin-top w3-card-4 w3-round-large w3-hover-shadow"
+            onclick="window.location.href='/logout'">
+        LOG OUT
+    </button>
+</div>
+
+
+<div class="w3-container w3-half w3-margin-top w3-animate-zoom">
+
+    <form id="myForm" class="w3-container w3-card-4 w3-round-xlarge" action="/admin/panel" method="post"
+          style="background-color: rgba(255,251,255,0.5);">
+        <h3>Info</h3>
+        <p>
+            <input class="w3-input w3-hover-shadow" name="username" type="text"
+                   style="width:90%" title="username" required>
+            <label>Username</label></p>
+        <p>
+            <input class="w3-input w3-hover-shadow" name="password" type="password"
+                   style="width:90%" title="password" required>
+            <label>Password</label></p>
+
+        <p>
+            <input class="w3-input w3-hover-shadow" name="firstName" type="text"
+                   style="width:90%" title="firstName" required>
+            <label>First Name</label></p>
+
+        <p>
+            <input class="w3-input w3-hover-shadow" name="lastName" type="text"
+                   style="width:90%" title="lastName" required>
+            <label>Last Name</label></p>
+
+        <h3>Role</h3>
+        <p>
+            <input class="w3-radio" type="radio" name="role" value="SCM" title="SCM" checked>
+            <label>SCM-employee</label></p>
+        <p>
+            <input class="w3-radio" type="radio" name="role" value="SALES" title="SALES">
+            <label>SALES-employee</label></p>
+
+        <p class="w3-center">
+            <input type="submit" class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow" value="REGISTER">
+        </p>
+
+    </form>
+
+</div>
+
+<script>
+    function clicked(e)
+    {
+        if(!confirm('Do you want to register this user?')) {
+            e.preventDefault();
+        } else {
+            document.getElementById("myForm").reset();
+        }
+    }
+</script>
+</body>
+</html>
