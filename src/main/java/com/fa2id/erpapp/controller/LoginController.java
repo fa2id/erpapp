@@ -13,7 +13,6 @@ public class LoginController {
 
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public ModelAndView getPage() {
-        System.out.println("GETPAGE");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         return modelAndView;
@@ -22,10 +21,8 @@ public class LoginController {
 
     @RequestMapping(value = "/login/default", method = RequestMethod.GET)
     public ModelAndView getPageAfterLogin() {
-        System.out.println("RUNNING");
         ModelAndView modelAndView = new ModelAndView();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        authentication.getAuthorities().forEach(System.out::println);
         for (GrantedAuthority s : authentication.getAuthorities()) {
             switch (s.getAuthority()) {
                 case "SALES":

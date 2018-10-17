@@ -9,7 +9,6 @@ public class AccessController {
 
     @RequestMapping(value = "/access-denied")
     public ModelAndView getDeniedAccess() {
-        System.out.println("DENIED IN SERVER");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("access-denied");
         return modelAndView;

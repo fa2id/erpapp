@@ -27,7 +27,7 @@
 
     </style>
 </head>
-<body th:style="'background:url('+ @{/images/Background.jpg} +');'">
+<body th:style="'background:url('+ @{/images/Background.jpg} +') no-repeat fixed;'">
 
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card-4 w3-opacity-min">
@@ -37,6 +37,7 @@
         <a href="#add" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ADD ITEM</a>
         <a href="#remove" class="w3-bar-item w3-button w3-padding-large w3-hide-small">REMOVE ITEM</a>
         <a href="#edit" class="w3-bar-item w3-button w3-padding-large w3-hide-small">EDIT ITEM</a>
+        <a href="#search" class="w3-bar-item w3-button w3-padding-large w3-hide-small">SEARCH ITEM</a>
         <a href="/logout" class="w3-padding-large w3-hover-red w3-hide-small w3-right">
             <i class="fas fa-sign-out-alt"></i>
         </a>
@@ -47,6 +48,7 @@
     <a href="#add" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">ADD ITEM</a>
     <a href="#remove" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">REMOVE ITEM</a>
     <a href="#edit" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">EDIT ITEM</a>
+    <a href="#search" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">SEARCH ITEM</a>
     <a href="/logout" class="w3-padding-large w3-hover-red w3-button">
         <i class="fas fa-sign-out-alt"></i>
         LOG OUT</a>
@@ -74,7 +76,7 @@
         <div class="w3-cell-row w3-margin-bottom w3-margin-top">
             <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
 
-                <form id="addForm" class="w3-container w3-card-4 w3-round-xlarge" action="/scm/add" method="post"
+                <form id="addForm" class="w3-container w3-card-4 w3-round-xlarge" action="/scm/items/v1" method="post"
                       style="background-color: rgba(255,251,255,0.5);">
                     <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
                         Add Item Panel</h3>
@@ -92,6 +94,11 @@
                         <input class="w3-input w3-hover-shadow" name="itemPrice" type="number" min="1"
                                style="width:90%" title="itemPrice" required>
                         <label>Item Price</label></p>
+
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="categoryName" type="text" min="1"
+                               style="width:90%" title="categoryName" required>
+                        <label>Item Category</label></p>
 
                     <p class="w3-center">
                         <input type="submit" class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow"
@@ -119,7 +126,8 @@
         <div class="w3-cell-row w3-margin-bottom w3-margin-top">
             <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
 
-                <form id="removeForm" class="w3-container w3-card-4 w3-round-xlarge" action="/scm/remove" method="post"
+                <form id="removeForm" class="w3-container w3-card-4 w3-round-xlarge"
+                      action="/scm/items/v1/remove" method="post"
                       style="background-color: rgba(255,251,255,0.5);">
                     <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
                         Remove Item Panel</h3>
@@ -154,7 +162,8 @@
         <div class="w3-cell-row w3-margin-bottom w3-margin-top">
             <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
 
-                <form id="editForm" class="w3-container w3-card-4 w3-round-xlarge" action="/scm/edit" method="post"
+                <form id="editForm" class="w3-container w3-card-4 w3-round-xlarge"
+                      action="/scm/items/v1/edit" method="post"
                       style="background-color: rgba(255,251,255,0.5);">
                     <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
                         Edit Item Panel</h3>
@@ -178,6 +187,12 @@
                                style="width:90%" title="itemPrice" required>
                         <label>Item Price</label></p>
 
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="categoryName" type="text" min="1"
+                               style="width:90%" title="categoryName" required>
+                        <label>Item Category</label></p>
+
+
                     <p class="w3-center">
                         <input type="submit" class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow"
                                value="EDIT ITEM">
@@ -190,6 +205,52 @@
                 <div class="w3-container w3-card-4 w3-round-xlarge">
                     <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
                     <pre id="editFormResult">Result will be shown here.</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="search" class="w3-container w3-margin w3-margin w3-card-4 my-section" style="background-color: rgba(255,0,9,0.25)">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-search"></i>
+        </p>
+        <h3 class="w3-center">SEARCH ITEM</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+
+                <form id="searchForm" class="w3-container w3-card-4 w3-round-xlarge" action="/scm/items/v1/search" method="get"
+                      style="background-color: rgba(255,251,255,0.5);">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                        Search Item Panel</h3>
+
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="itemName" type="text" min="0"
+                               style="width:90%" title="itemName">
+                        <label>Item Name</label></p>
+
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="itemQuantity" type="number" min="1"
+                               style="width:90%" title="itemQuantity">
+                        <label>Item Quantity</label></p>
+
+                    <p>
+                        <input class="w3-input w3-hover-shadow" name="itemPrice" type="number" min="1"
+                               style="width:90%" title="itemPrice">
+                        <label>Item Price</label></p>
+
+                    <p class="w3-center">
+                        <input type="submit" class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow"
+                               value="SEARCH ITEMS">
+                    </p>
+
+                </form>
+
+            </div>
+            <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
+                <div class="w3-container w3-card-4 w3-round-xlarge">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
+                    <pre id="searchFormResult">Result will be shown here.</pre>
                 </div>
             </div>
         </div>

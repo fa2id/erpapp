@@ -10,38 +10,46 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.*;
 
-@Service("userService")
+@Service
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
-
     private final RoleRepository roleRepository;
 
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Autowired
-    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserService(UserRepository userRepository,
+                       RoleRepository roleRepository,
+                       BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+    @Transactional
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
+    @Transactional
     public void saveUser(User user) {
         userRepository.save(user);
     }
 
-    public void saveUser(User user, String role) {
+    @Transactional
+    public void registerUser(User user, String role) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         Role userRole = roleRepository.findByRole(role);
         user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
         userRepository.save(user);
     }
-
 
     @Override
     @Transactional

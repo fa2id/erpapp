@@ -24,7 +24,7 @@
     </style>
 </head>
 
-<body th:style="'background:url('+ @{/images/Background.jpg} +');'">
+<body th:style="'background:url('+ @{/images/Background.jpg} +') no-repeat fixed;'">
 <header class="w3-container w3-white w3-center w3-opacity-max">
     <h1>ADMIN PANEL</h1>
 </header>
@@ -40,7 +40,7 @@
 
 <div class="w3-container w3-half w3-margin-top w3-animate-zoom">
 
-    <form id="myForm" class="w3-container w3-card-4 w3-round-xlarge" action="/admin/panel" method="post"
+    <form id="myForm" class="w3-container w3-card-4 w3-round-xlarge" action="/admin/panel/register" method="post"
           style="background-color: rgba(255,251,255,0.5);">
         <h3>Info</h3>
         <p>
