@@ -1,6 +1,8 @@
 package com.fa2id.erpapp.controller;
 
+import com.fa2id.erpapp.model.Category;
 import com.fa2id.erpapp.model.Item;
+import com.fa2id.erpapp.service.CategoryService;
 import com.fa2id.erpapp.service.ItemService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -22,13 +24,16 @@ public class ScmController {
 
     private final ObjectMapper objectMapper;
     private final ItemService itemService;
+    private CategoryService categoryService;
 
 
     @Autowired
-    public ScmController(ObjectMapper objectMapper, ItemService itemService) {
+    public ScmController(ObjectMapper objectMapper, ItemService itemService, CategoryService categoryService) {
         this.objectMapper = objectMapper;
         this.itemService = itemService;
+        this.categoryService = categoryService;
     }
+
 
     @RequestMapping(value = {"/", "/panel"}, method = RequestMethod.GET)
     public ModelAndView getPanel() {
@@ -36,6 +41,7 @@ public class ScmController {
         modelAndView.setViewName("scm-panel");
         return modelAndView;
     }
+
 
     @RequestMapping(
             value = "/items/v1",
@@ -49,6 +55,7 @@ public class ScmController {
                 200,
                 "Item added.", resultNode);
     }
+
 
     @RequestMapping(
             value = "/items/v1/get",
@@ -65,6 +72,7 @@ public class ScmController {
                 "Items got successfully.",
                 arrayNode);
     }
+
 
     @RequestMapping(
             value = "/items/v1/get-all",
@@ -84,6 +92,7 @@ public class ScmController {
                 resultNode);
     }
 
+
     @RequestMapping(
             value = "/items/v1/remove",
             method = RequestMethod.POST)
@@ -96,6 +105,7 @@ public class ScmController {
                 "Item removed successfully.",
                 resultNode);
     }
+
 
     @RequestMapping(
             value = "/items/v1/edit",
@@ -113,6 +123,7 @@ public class ScmController {
                 200,
                 "Item edited.", resultNode);
     }
+
 
     @RequestMapping(
             value = "/items/v1/search",
@@ -150,6 +161,23 @@ public class ScmController {
                 "Items got successfully.",
                 arrayNode);
     }
+
+
+    @RequestMapping(value = "/categories/get-all", method = RequestMethod.GET)
+    @ResponseBody
+    public ArrayNode getAllCategories() {
+        List<Category> categories = categoryService.getAllCategories();
+        List<ObjectNode> categoryNodes = new ArrayList<>();
+        for (Category category : categories){
+            ObjectNode objectNode = objectMapper.createObjectNode();
+            objectNode.put("categoryName", category.getCategoryName());
+            categoryNodes.add(objectNode);
+        }
+        ArrayNode arrayNode = objectMapper.createArrayNode();
+        arrayNode.addAll(categoryNodes);
+        return arrayNode;
+    }
+
 
     private void makeItemArray(List<Item> items, List<ObjectNode> itemNodes) {
         for (Item item : items) {

@@ -19,6 +19,14 @@
             border: 3px dashed black;
         }
 
+        input.w3-input {
+            background-color: rgba(255, 251, 255, 0);
+        }
+
+        select.w3-select {
+            background-color: rgba(255, 251, 255, 0);
+        }
+
         input.w3-input:focus {
             outline: none;
             border-color: black;
@@ -96,9 +104,11 @@
                         <label>Item Price</label></p>
 
                     <p>
-                        <input class="w3-input w3-hover-shadow" name="categoryName" type="text" min="1"
-                               style="width:90%" title="categoryName" required>
-                        <label>Item Category</label></p>
+                        <select id="addSelect" class="w3-select w3-white w3-hover-shadow w3-opacity-min"
+                                name="categoryName" style="width: 90%" title="categoryName">
+                            <option value="uncategorized">uncategorized</option>
+                        </select><br>
+                        <label for="addSelect">Item Category</label></p>
 
                     <p class="w3-center">
                         <input type="submit" class="w3-button w3-white w3-card-4 w3-round-large w3-hover-shadow"
@@ -188,9 +198,11 @@
                         <label>Item Price</label></p>
 
                     <p>
-                        <input class="w3-input w3-hover-shadow" name="categoryName" type="text" min="1"
-                               style="width:90%" title="categoryName" required>
-                        <label>Item Category</label></p>
+                        <select id="editSelect" class="w3-select w3-white w3-opacity-min w3-hover-shadow"
+                                name="categoryName" style="width: 90%" title="categoryName">
+                            <option value="uncategorized">uncategorized</option>
+                        </select><br>
+                        <label for="editSelect">Item Category</label></p>
 
 
                     <p class="w3-center">
@@ -301,6 +313,27 @@
 
         e.preventDefault();
     });
+</script>
+<script>
+    getdata();
+    function getdata(){
+        $.ajax({
+            url : '/scm/categories/get-all',
+            type : 'GET',
+            success: function(data){
+                let options = "";
+                for (let i = 0; i < data.length; i++) {
+                    const opObj = data[i].categoryName;
+                    options += "<option>" + opObj + "</option>";
+                }
+                $("#addSelect").html(options);
+                $("#editSelect").html(options);
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+    }
 </script>
 </body>
 </html>
