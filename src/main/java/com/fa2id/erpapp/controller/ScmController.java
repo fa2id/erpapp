@@ -58,7 +58,7 @@ public class ScmController {
 
 
     @RequestMapping(
-            value = "/items/v1/get",
+            value = "/items/v1/get-all",
             method = RequestMethod.GET)
     @ResponseBody
     public ObjectNode getAllItems() {
@@ -75,7 +75,7 @@ public class ScmController {
 
 
     @RequestMapping(
-            value = "/items/v1/get-all",
+            value = "/items/v1/get",
             method = RequestMethod.GET)
     @ResponseBody
     public ObjectNode getItem(@RequestParam int itemId) {
