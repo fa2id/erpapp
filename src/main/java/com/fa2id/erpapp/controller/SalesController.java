@@ -101,7 +101,7 @@ public class SalesController {
     }
 
     @RequestMapping(
-            value = "/orders/v1/get-orders",
+            value = "/orders/v1/get-all",
             method = RequestMethod.GET)
     @ResponseBody
     public ObjectNode getAllOrders() {
@@ -120,7 +120,7 @@ public class SalesController {
     }
 
     @RequestMapping(
-            value = "/orders/v1/get-order",
+            value = "/orders/v1/get",
             method = RequestMethod.GET)
     @ResponseBody
     public ObjectNode getOrder(int orderId) {
