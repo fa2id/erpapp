@@ -8,6 +8,7 @@ import com.fa2id.erpapp.service.CustomerService;
 import com.fa2id.erpapp.service.ItemService;
 import com.fa2id.erpapp.service.OrderService;
 import com.fa2id.erpapp.service.UserService;
+import com.fa2id.erpapp.utils.MyJsonProtocol;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -40,17 +41,21 @@ public class SalesController {
 
     private final ItemService itemService;
 
+    private final MyJsonProtocol myJsonProtocol;
+
     @Autowired
     public SalesController(ObjectMapper objectMapper,
                            CustomerService customerService,
                            OrderService orderService,
                            UserService userService,
-                           ItemService itemService) {
+                           ItemService itemService,
+                           MyJsonProtocol myJsonProtocol) {
         this.objectMapper = objectMapper;
         this.customerService = customerService;
         this.orderService = orderService;
         this.userService = userService;
         this.itemService = itemService;
+        this.myJsonProtocol = myJsonProtocol;
     }
 
 
@@ -61,13 +66,12 @@ public class SalesController {
         return modelAndView;
     }
 
+
     @RequestMapping(
             value = "/orders/v1/place",
             method = RequestMethod.POST)
     @ResponseBody
-    public ObjectNode placeOrder(Customer customer,
-                                 @RequestParam int itemId,
-                                 @RequestParam int itemQuantity) {
+    public ObjectNode placeOrder(Customer customer, int itemId, int itemQuantity) {
         String message;
         int status = 200;
         ObjectNode resultNode = objectMapper.createObjectNode();
@@ -97,11 +101,12 @@ public class SalesController {
         } else {
             message = "Item not found.";
         }
-        return createSalesResponseObjectResult(status, message, resultNode);
+        return myJsonProtocol.createResponseObjectResult(status, message, resultNode);
     }
 
+
     @RequestMapping(
-            value = "/orders/v1/get-all",
+            value = "/orders/v1/get/all",
             method = RequestMethod.GET)
     @ResponseBody
     public ObjectNode getAllOrders() {
@@ -109,15 +114,16 @@ public class SalesController {
         int status = 200;
         List<Order> orders = orderService.getAllOrders();
         List<ObjectNode> orderNodes = new ArrayList<>();
-        makeOrderArray(orders, orderNodes);
+        myJsonProtocol.makeOrderArray(orders, orderNodes);
         ArrayNode arrayNode = objectMapper.createArrayNode();
         arrayNode.addAll(orderNodes);
         if (orders.isEmpty())
             message = "No orders found.";
         else
             message = "Got all orders.";
-        return createSalesResponseArrayResult(status, message, arrayNode);
+        return myJsonProtocol.createResponseArrayResult(status, message, arrayNode);
     }
+
 
     @RequestMapping(
             value = "/orders/v1/get",
@@ -151,8 +157,9 @@ public class SalesController {
             message = "Order not found.";
             status = 200;
         }
-        return createSalesResponseObjectResult(status, message, resultNode);
+        return myJsonProtocol.createResponseObjectResult(status, message, resultNode);
     }
+
 
     @RequestMapping(value = "/orders/v1/delete", method = RequestMethod.POST)
     @ResponseBody
@@ -176,7 +183,7 @@ public class SalesController {
             status = 200;
         }
 
-        return createSalesResponseObjectResult(status, message, resultNode);
+        return myJsonProtocol.createResponseObjectResult(status, message, resultNode);
     }
 
 
@@ -187,8 +194,6 @@ public class SalesController {
     public ObjectNode searchItems(@RequestParam(required = false) String orderStatus,
                                   @RequestParam(required = false) Double orderTotalPrice,
                                   @RequestParam(required = false) Integer orderItemQuantity) {
-        String message;
-        int status;
         List<Order> orders;
         if (orderStatus.equals("")) orderStatus = null;
         if (orderStatus == null && orderTotalPrice == null && orderItemQuantity == null) {
@@ -206,56 +211,15 @@ public class SalesController {
                 orders = orderService.searchOrdersByPrice(orderTotalPrice);
             else
                 orders = orderService.searchOrdersByQuantity(orderItemQuantity);
-        } else {
+        } else
             orders = orderService.searchOrdersByStatusPriceQuantity(orderStatus, orderTotalPrice, orderItemQuantity);
-        }
         List<ObjectNode> orderNodes = new ArrayList<>();
-        makeOrderArray(orders, orderNodes);
+        myJsonProtocol.makeOrderArray(orders, orderNodes);
         ArrayNode arrayNode = objectMapper.createArrayNode();
         arrayNode.addAll(orderNodes);
-        message = "Orders got successfully.";
-        status = 200;
-        return createSalesResponseArrayResult(status, message, arrayNode);
+        String message = "Orders got successfully.";
+        int status = 200;
+        return myJsonProtocol.createResponseArrayResult(status, message, arrayNode);
     }
 
-    private void makeOrderArray(List<Order> orders, List<ObjectNode> orderNodes) {
-        for (Order order : orders) {
-            ObjectNode objectNode = objectMapper.createObjectNode();
-            objectNode.put("orderId", order.getOrderId());
-            objectNode.put("orderStatus", order.getOrderStatus());
-            objectNode.put("customerEmail", order.getOrderCustomer().getCustomerEmail());
-            objectNode.put("customerFirstName", order.getOrderCustomer().getCustomerFirstName());
-            objectNode.put("customerLastName", order.getOrderCustomer().getCustomerLastName());
-            objectNode.put("sellerUsername", order.getOrderSeller().getUsername());
-            Item item = new Item();
-            for (Item orderItem : order.getOrderItems()) {
-                item = orderItem;
-            }
-            objectNode.put("itemId", item.getItemId());
-            objectNode.put("itemName", item.getItemName());
-            objectNode.put("itemQuantity", order.getOrderItemQuantity());
-            objectNode.put("itemCategoryId", item.getItemCategory().getCategoryId());
-            objectNode.put("itemCategoryName", item.getItemCategory().getCategoryName());
-            objectNode.put("orderTotalPrice", order.getOrderTotalPrice());
-            orderNodes.add(objectNode);
-        }
-    }
-
-    @SuppressWarnings("Duplicates")
-    private ObjectNode createSalesResponseObjectResult(int status, String message, ObjectNode resultNode) {
-        ObjectNode responseNode = objectMapper.createObjectNode();
-        responseNode.put("status", status);
-        responseNode.put("message", message);
-        responseNode.set("result", resultNode);
-        return responseNode;
-    }
-
-    @SuppressWarnings("Duplicates")
-    private ObjectNode createSalesResponseArrayResult(int status, String message, ArrayNode resultArray) {
-        ObjectNode responseNode = objectMapper.createObjectNode();
-        responseNode.put("status", status);
-        responseNode.put("message", message);
-        responseNode.putArray("result").addAll(resultArray);
-        return responseNode;
-    }
 }

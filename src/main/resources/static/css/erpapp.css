@@ -1,0 +1,21 @@
+*:focus {
+    outline: none;
+}
+
+hr {
+    border: 3px dashed black;
+}
+
+input.w3-input {
+    background-color: rgba(255, 251, 255, 0);
+}
+
+select.w3-select {
+    background-color: rgba(255, 251, 255, 0);
+}
+
+input.w3-input:focus {
+    outline: none;
+    border-color: black;
+    border-bottom-width: medium;
+}

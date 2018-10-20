@@ -6,30 +6,12 @@
     <title>Sales Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../static/js/sales.js" th:src="@{/js/sales.js}"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/w3.css" th:href="@{/css/w3.css}">
+    <link rel="stylesheet" th:href="@{/css/w3.css}">
+    <link rel="stylesheet" th:href="@{/css/erpapp.css}">
     <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
-    <style>
-        *:focus {
-            outline: none;
-        }
-
-        hr {
-            border: 3px dashed black;
-        }
-
-        input.w3-input {
-            background-color: rgba(255, 251, 255, 0);
-        }
-
-        input.w3-input:focus {
-            outline: none;
-            border-color: black;
-            border-bottom-width: medium;
-        }
-
-    </style>
 </head>
 <body th:style="'background:url('+ @{/images/Background.jpg} +') no-repeat fixed;'">
 
@@ -105,10 +87,10 @@
                         Product Info</h3>
 
                     <p>
-                        <select id="itemIdEditSelect" class="w3-select w3-white w3-hover-shadow w3-opacity-min"
+                        <select id="itemIdPlaceSelect" class="w3-select w3-white w3-hover-shadow w3-opacity-min"
                                 name="itemId" style="width: 90%" title="itemId" required>
                         </select><br>
-                        <label for="itemIdEditSelect">Item ID</label></p>
+                        <label for="itemIdPlaceSelect">Item ID</label></p>
 
                     <p><b>Item Name: </b><small id="placeItemName"></small></p>
                     <p><b>Item Price: </b><small id="placeItemPrice"></small></p>
@@ -220,7 +202,7 @@
             <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
 
                 <form id="ordersForm" class="w3-container w3-card-4 w3-round-xlarge"
-                      action="/sales/orders/v1/get-all" method="get"
+                      action="/sales/orders/v1/get/all" method="get"
                       style="background-color: rgba(255,251,255,0.5);">
                     <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
                         Orders Panel</h3>
@@ -292,126 +274,14 @@
 </div>
 
 <script>
-    $("a[href^='#']").click(function (e) {
-        getOrderIds();
-        e.preventDefault();
-        $("#main").hide();
-        $(".my-section").hide();
-        $($(this).attr("href")).fadeIn();
-        $($(this).attr("href")).fadeIn("slow");
-        $($(this).attr("href")).fadeIn(3000);
-    });
-</script>
-<script>
-    $(".my-section").hide();
-    $("#main").fadeIn();
-</script>
-<script>
     function myFunction() {
-        var x = document.getElementById("navDemo");
-        if (x.className.indexOf("w3-show") == -1) {
+        const x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") === -1) {
             x.className += " w3-show";
         } else {
             x.className = x.className.replace(" w3-show", "");
         }
     }
-</script>
-<script>
-    $("form").submit(function (e) {
-
-        var form = $(this);
-        var url = form.attr('action');
-        var id = "#" + form.attr('id') + "Result";
-        var method = form.attr('method').toUpperCase();
-
-        $.ajax({
-            type: method,
-            url: url,
-            data: form.serialize(),
-            success: function (data) {
-                $(id).text(JSON.stringify(data, null, '\t'));
-            }
-        });
-        form[0].reset();
-        $("#placeAvailableQuantity").html("");
-        $("#placeItemName").html("");
-        $("#placeItemPrice").html("");
-        $("#placeItemCategory").html("");
-        e.preventDefault();
-    });
-</script>
-<script>
-    getOrderIds();
-    function getOrderIds(){
-        $.ajax({
-            url : '/sales/orders/v1/get-all',
-            type : 'GET',
-            success: function(data){
-                console.log(data);
-                console.log(data.result);
-                let options = "<option value='' selected></option>";
-                for (let i = 0; i < data.result.length; i++) {
-                    const opObj = data.result[i].orderId;
-                    console.log(opObj);
-                    options += "<option>" + opObj + "</option>";
-                }
-                $("#orderIdCancelSelect").html(options);
-                $("#orderIdGetSelect").html(options);
-            },
-            error: function(error){
-                console.log(error);
-            }
-        });
-    }
-</script>
-<script>
-    getItemIds();
-    function getItemIds(){
-        $.ajax({
-            url : '/scm/items/v1/get-all',
-            type : 'GET',
-            success: function(data){
-                console.log(data);
-                console.log(data.result);
-                let options = "<option value='' selected></option>";
-                for (let i = 0; i < data.result.length; i++) {
-                    const opObj = data.result[i].itemId;
-                    console.log(opObj);
-                    options += "<option>" + opObj + "</option>";
-                }
-                $("#itemIdEditSelect").html(options);
-            },
-            error: function(error){
-                console.log(error);
-            }
-        });
-    }
-</script>
-<script>
-    $("#itemIdEditSelect").change(
-        function() {
-            $("#placeAvailableQuantity").html("");
-            $("#placeItemName").html("");
-            $("#placeItemPrice").html("");
-            $("#placeItemCategory").html("");
-            if ($("#itemIdEditSelect").find(":selected").text() !== "") {
-                $.ajax({
-                    url: '/scm/items/v1/get?itemId=' + $("#itemIdEditSelect").find(":selected").text(),
-                    type: 'GET',
-                    success: function (data) {
-                        var result = data.result;
-                        $("#placeAvailableQuantity").html(result.itemQuantity);
-                        $("#placeItemName").html(result.itemName);
-                        $("#placeItemPrice").html(result.itemPrice);
-                        $("#placeItemCategory").html(result.itemCategory);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            }
-        }
-    );
 </script>
 </body>
 </html>

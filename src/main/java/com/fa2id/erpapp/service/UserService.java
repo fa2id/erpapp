@@ -39,16 +39,16 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public void saveUser(User user) {
-        userRepository.save(user);
+    public User saveUser(User user) {
+        return userRepository.save(user);
     }
 
     @Transactional
-    public void registerUser(User user, String role) {
+    public User registerUser(User user, String role) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         Role userRole = roleRepository.findByRole(role);
         user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     @Override

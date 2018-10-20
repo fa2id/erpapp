@@ -2,11 +2,15 @@ package com.fa2id.erpapp.controller;
 
 import com.fa2id.erpapp.model.User;
 import com.fa2id.erpapp.service.UserService;
+import com.fa2id.erpapp.utils.MyJsonProtocol;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -14,10 +18,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
 
     private final UserService userService;
+    private final ObjectMapper objectMapper;
+    private final MyJsonProtocol myJsonProtocol;
 
     @Autowired
-    public AdminController(UserService userService) {
+    public AdminController(UserService userService, ObjectMapper objectMapper, MyJsonProtocol myJsonProtocol) {
         this.userService = userService;
+        this.objectMapper = objectMapper;
+        this.myJsonProtocol = myJsonProtocol;
     }
 
     @RequestMapping(value = {"/", "/panel"}, method = RequestMethod.GET)
@@ -30,12 +38,19 @@ public class AdminController {
 
 
     @RequestMapping(value = "/panel/register", method = RequestMethod.POST)
-    public ModelAndView processRegistrationForm(User user, @RequestParam String role) {
-        ModelAndView modelAndView = new ModelAndView();
+    @ResponseBody
+    public ObjectNode processRegistrationForm(User user, @RequestParam String role) {
+        String message;
+        int status = 200;
+        ObjectNode resultNode = objectMapper.createObjectNode();
         User existedUser = userService.findByUsername(user.getUsername());
-        if (existedUser == null)
-            userService.registerUser(user, role);
-        modelAndView.setViewName("admin-panel");
-        return modelAndView;
+        if (existedUser == null) {
+            User registeredUser = userService.registerUser(user, role);
+            message = "User registered successfully. \nUser ID: "
+                    + registeredUser.getId() + " \nUsername: "
+                    + registeredUser.getUsername();
+        } else
+            message = "User already existed.";
+        return myJsonProtocol.createResponseObjectResult(status, message, resultNode);
     }
 }

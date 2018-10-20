@@ -45,7 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .hasAuthority("ADMIN")
                 .antMatchers("/sales/**","/scm/items/v1/get-all","/scm/items/v1/get")
                     .hasAuthority("SALES")
-                .antMatchers("/scm/**")
+                .antMatchers("/scm/**","/scm/items/v1/get-all","/scm/items/v1/get")
                     .hasAuthority("SCM")
                     .anyRequest()
                     .authenticated()
