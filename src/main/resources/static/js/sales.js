@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     $("a[href^='#']").click(function (e) {
         getOrderIds();
+        getItemIds();
         e.preventDefault();
         $("#main").hide();
         $(".my-section").hide();
@@ -44,11 +45,9 @@ $(document).ready(function () {
             type: 'GET',
             success: function (data) {
                 console.log(data);
-                console.log(data.result);
                 let options = "<option value='' selected></option>";
                 for (let i = 0; i < data.result.length; i++) {
                     const opObj = data.result[i].orderId;
-                    console.log(opObj);
                     options += "<option>" + opObj + "</option>";
                 }
                 $("#orderIdCancelSelect").html(options);
@@ -68,14 +67,12 @@ $(document).ready(function () {
             type: 'GET',
             success: function (data) {
                 console.log(data);
-                console.log(data.result);
                 let options = "<option value='' selected></option>";
                 for (let i = 0; i < data.result.length; i++) {
                     const opObj = data.result[i].itemId;
-                    console.log(opObj);
                     options += "<option>" + opObj + "</option>";
                 }
-                $("#itemIdEditSelect").html(options);
+                $("#itemIdPlaceSelect").html(options);
             },
             error: function (error) {
                 console.log(error);
@@ -95,17 +92,49 @@ $(document).ready(function () {
                     url: '/scm/items/v1/get?itemId=' + itemIdPlaceSelect.find(":selected").text(),
                     type: 'GET',
                     success: function (data) {
+                        console.log(data);
                         const result = data.result;
                         $("#placeAvailableQuantity").html(result.itemQuantity);
                         $("#placeItemName").html(result.itemName);
                         $("#placeItemPrice").html(result.itemPrice);
                         $("#placeItemCategory").html(result.itemCategory);
+                        $("input[name='itemQuantity']").prop('max', result.itemQuantity);
+
                     },
                     error: function (error) {
                         console.log(error);
                     }
                 });
             }
+        }
+    );
+
+    $("#customerEmailInput").change(
+        function () {
+            const customerFirstNameInput = $("#customerFirstNameInput");
+            const customerLastNameInput = $("#customerLastNameInput");
+            customerFirstNameInput.val("");
+            customerLastNameInput.val("");
+            customerFirstNameInput.prop('disabled', true);
+            customerLastNameInput.prop('disabled', true);
+            $.ajax({
+                url: '/sales/customers/v1/get?customerEmail=' + $("#customerEmailInput").val(),
+                type: 'GET',
+                success: function (data) {
+                    console.log(data);
+                    const result = data.result;
+                    if (result.customerExisted) {
+                        customerFirstNameInput.val(result.customerFirstName);
+                        customerLastNameInput.val(result.customerLastName);
+                    } else {
+                        customerFirstNameInput.prop('disabled', false);
+                        customerLastNameInput.prop('disabled', false);
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
         }
     );
 });

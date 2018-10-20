@@ -222,4 +222,26 @@ public class SalesController {
         return myJsonProtocol.createResponseArrayResult(status, message, arrayNode);
     }
 
+
+    @RequestMapping(value = "/customers/v1/get", method = RequestMethod.GET)
+    @ResponseBody
+    public ObjectNode getCustomer(String customerEmail) {
+        String message;
+        int status;
+        ObjectNode resultNode = objectMapper.createObjectNode();
+        Customer existedCustomer = customerService.getCustomerByEmail(customerEmail);
+        if (existedCustomer != null) {
+            resultNode.put("customerExisted", true);
+            resultNode.put("customerEmail", existedCustomer.getCustomerEmail());
+            resultNode.put("customerFirstName", existedCustomer.getCustomerFirstName());
+            resultNode.put("customerLastName", existedCustomer.getCustomerLastName());
+            message = "Customer existed.";
+            status = 200;
+        } else {
+            resultNode.put("customerExisted", false);
+            message = "Customer not existed.";
+            status = 200;
+        }
+        return myJsonProtocol.createResponseObjectResult(status, message, resultNode);
+    }
 }

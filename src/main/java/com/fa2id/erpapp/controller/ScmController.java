@@ -169,7 +169,7 @@ public class ScmController {
     public ArrayNode getAllCategories() {
         List<Category> categories = categoryService.getAllCategories();
         List<ObjectNode> categoryNodes = new ArrayList<>();
-        for (Category category : categories){
+        for (Category category : categories) {
             ObjectNode objectNode = objectMapper.createObjectNode();
             objectNode.put("categoryName", category.getCategoryName());
             categoryNodes.add(objectNode);

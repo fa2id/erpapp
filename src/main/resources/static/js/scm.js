@@ -44,11 +44,12 @@ $(document).ready(function () {
             url: '/scm/categories/v1/get/all',
             type: 'GET',
             success: function (data) {
+                console.log(data);
                 let options = "";
                 for (let i = 0; i < data.length; i++) {
                     const opObj = data[i].categoryName;
-                    options += "<option value='"+opObj+"'>"
-                        + (opObj === "uncategorized"?"":opObj) + "</option>";
+                    options += "<option value='" + opObj + "'>"
+                        + (opObj === "uncategorized" ? "" : opObj) + "</option>";
                 }
                 $("#addSelect").html(options);
                 $("#editSelect").html(options);
@@ -68,11 +69,9 @@ $(document).ready(function () {
             type: 'GET',
             success: function (data) {
                 console.log(data);
-                console.log(data.result);
                 let options = "<option value='' selected></option>";
                 for (let i = 0; i < data.result.length; i++) {
                     const opObj = data.result[i].itemId;
-                    console.log(opObj);
                     options += "<option>" + opObj + "</option>";
                 }
                 $("#itemIdRemoveSelect").html(options);
@@ -95,6 +94,7 @@ $(document).ready(function () {
                     url: '/scm/items/v1/get?itemId=' + itemIdEditSelect.find(":selected").text(),
                     type: 'GET',
                     success: function (data) {
+                        console.log(data);
                         const result = data.result;
                         $("#editItemName").val(result.itemName);
                         $("#editItemPrice").val(result.itemPrice);
