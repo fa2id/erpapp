@@ -1,9 +1,11 @@
 package com.fa2id.erpapp.controller;
 
+import com.fa2id.erpapp.model.Order;
 import com.fa2id.erpapp.model.User;
 import com.fa2id.erpapp.service.UserService;
 import com.fa2id.erpapp.utils.MyJsonProtocol;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -52,5 +57,24 @@ public class AdminController {
         } else
             message = "User already existed.";
         return myJsonProtocol.createResponseObjectResult(status, message, resultNode);
+    }
+
+    @RequestMapping(
+            value = "/users/v1/get/all",
+            method = RequestMethod.GET)
+    @ResponseBody
+    public ObjectNode getAllUsers() {
+        String message;
+        int status = 200;
+        List<User> users = userService.getAllUsers();
+        List<ObjectNode> userNodes = new ArrayList<>();
+        myJsonProtocol.makeUserArray(users, userNodes);
+        ArrayNode arrayNode = objectMapper.createArrayNode();
+        arrayNode.addAll(userNodes);
+        if (users.isEmpty())
+            message = "No users found.";
+        else
+            message = "Got all users.";
+        return myJsonProtocol.createResponseArrayResult(status, message, arrayNode);
     }
 }

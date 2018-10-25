@@ -6,6 +6,7 @@
     <title>Registration Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../static/js/admin.js" th:src="@{/js/admin.js}"></script>
     <link rel="stylesheet" href="../static/css/w3.css" th:href="@{/css/w3.css}">
     <link rel="stylesheet" href="../static/css/erpapp.css" th:href="@{/css/erpapp.css}">
     <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
@@ -16,7 +17,7 @@
     <h1>ADMIN PANEL</h1>
 </header>
 
-<div class="w3-container w3-half w3-center w3-margin-top w3-animate-bottom">
+<div class="w3-container w3-third w3-center w3-margin-top w3-animate-bottom">
     <img th:src="@{/images/register.png}" class="w3-image" style="max-width: 40%;"><br>
     <button class="w3-button w3-white w3-margin-top w3-card-4 w3-round-large w3-hover-shadow"
             onclick="window.location.href='/logout'">
@@ -25,7 +26,7 @@
 </div>
 
 
-<div class="w3-container w3-half w3-margin-top w3-animate-zoom">
+<div class="w3-container w3-third w3-margin-top w3-animate-zoom">
 
     <form id="myForm" class="w3-container w3-card-4 w3-round-xlarge" action="/admin/panel/register" method="post"
           style="background-color: rgba(255,251,255,0.5);">
@@ -64,24 +65,16 @@
 
 </div>
 
-<script>
-    $("#myForm").submit(function (e) {
-        const result = $("#result");
-        const form = $(this);
-        const url = form.attr('action');
-        const method = form.attr('method').toUpperCase();
-        result.hide();
-        $.ajax({
-            type: method,
-            url: url,
-            data: form.serialize(),
-            success: function (data) {
-                alert(data.message);
-            }
-        });
-        form[0].reset();
-        e.preventDefault();
-    });
-</script>
+<div class="w3-container w3-third w3-center w3-margin-top w3-animate-bottom">
+    <div class="w3-container w3-card-4 w3-round-xlarge" style="background-color: rgba(255,251,255,0.5);">
+    <h3>Users</h3><br>
+    <table id="userTable" class="w3-margin-bottom w3-table-all w3-card w3-opacity-min">
+        <tr class="w3-green">
+            <th>Username</th>
+            <th>Role</th>
+        </tr>
+    </table>
+    </div>
+</div>
 </body>
 </html>

@@ -2,6 +2,8 @@ package com.fa2id.erpapp.utils;
 
 import com.fa2id.erpapp.model.Item;
 import com.fa2id.erpapp.model.Order;
+import com.fa2id.erpapp.model.Role;
+import com.fa2id.erpapp.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -56,6 +58,17 @@ public class MyJsonProtocol {
             objectNode.put("itemCategoryName", item.getItemCategory().getCategoryName());
             objectNode.put("orderTotalPrice", order.getOrderTotalPrice());
             orderNodes.add(objectNode);
+        }
+    }
+
+
+    public void makeUserArray(List<User> users, List<ObjectNode> userNodes) {
+        for (User user : users) {
+            ObjectNode objectNode = objectMapper.createObjectNode();
+            objectNode.put("username", user.getUsername());
+            for (Role role: user.getRoles())
+                objectNode.put("role", role.getRole());
+            userNodes.add(objectNode);
         }
     }
 

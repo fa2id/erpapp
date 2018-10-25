@@ -29,7 +29,7 @@ $(document).ready(function () {
             url: url,
             data: form.serialize(),
             success: function (data) {
-                $(id).text(JSON.stringify(data, null, '\t'));
+                $(id).text(JSON.stringify(data, null, '  '));
             }
         });
 

@@ -19,3 +19,17 @@ input.w3-input:focus {
     border-color: black;
     border-bottom-width: medium;
 }
+
+pre{
+    width: 400px;
+    height: 600px;
+    overflow: auto;
+}
+
+@media only screen and (max-width: 426px) {
+    pre{
+        width: 205px;
+        height: 400px;
+        overflow: auto;
+    }
+}
