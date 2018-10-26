@@ -52,7 +52,7 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 

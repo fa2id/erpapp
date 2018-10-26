@@ -66,7 +66,7 @@ public class MyJsonProtocol {
         for (User user : users) {
             ObjectNode objectNode = objectMapper.createObjectNode();
             objectNode.put("username", user.getUsername());
-            for (Role role: user.getRoles())
+            for (Role role : user.getRoles())
                 objectNode.put("role", role.getRole());
             userNodes.add(objectNode);
         }

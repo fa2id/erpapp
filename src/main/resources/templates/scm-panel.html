@@ -54,7 +54,8 @@
         </p>
     </div>
 
-    <div id="add" class="w3-container w3-margin w3-card-4 my-section" style="background-color: rgba(255,172,0,0.25)">
+    <div id="add" class="w3-container w3-margin w3-card-4 my-section"
+         style="background-color: rgba(255,172,0,0.25); display: none">
         <p class="w3-center w3-xxlarge">
             <i class="fas fa-plus-circle"></i>
         </p>
@@ -99,13 +100,25 @@
             <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
                 <div class="w3-container w3-card-4 w3-round-xlarge">
                     <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
-                    <pre id="addFormResult">Result will be shown here.</pre>
+                    <div id="addFormResultStatus"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-green w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="addFormResultMessage"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-red w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="addFormResultData"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-blue w3-round-xlarge"
+                         style="display: none">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="remove" class="w3-container w3-margin w3-card-4 my-section" style="background-color: rgba(202,0,255,0.25)">
+    <div id="remove" class="w3-container w3-margin w3-card-4 my-section"
+         style="background-color: rgba(202,0,255,0.25); display: none">
         <p class="w3-center w3-xxlarge">
             <i class="fas fa-minus-circle"></i>
         </p>
@@ -136,13 +149,25 @@
             <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
                 <div class="w3-container w3-card-4 w3-round-xlarge">
                     <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
-                    <pre id="removeFormResult">Result will be shown here.</pre>
+                    <div id="removeFormResultStatus"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-green w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="removeFormResultMessage"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-red w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="removeFormResultData"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-blue w3-round-xlarge"
+                         style="display: none">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="edit" class="w3-container w3-margin w3-margin w3-card-4 my-section" style="background-color: rgba(10,255,0,0.25)">
+    <div id="edit" class="w3-container w3-margin w3-margin w3-card-4 my-section"
+         style="background-color: rgba(10,255,0,0.25); display: none">
         <p class="w3-center w3-xxlarge">
             <i class="fas fa-edit"></i>
         </p>
@@ -195,13 +220,25 @@
             <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
                 <div class="w3-container w3-card-4 w3-round-xlarge">
                     <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
-                    <pre id="editFormResult">Result will be shown here.</pre>
+                    <div id="editFormResultStatus"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-green w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="editFormResultMessage"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-red w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="editFormResultData"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-blue w3-round-xlarge"
+                         style="display: none">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="search" class="w3-container w3-margin w3-margin w3-card-4 my-section" style="background-color: rgba(255,0,9,0.25)">
+    <div id="search" class="w3-container w3-margin w3-margin w3-card-4 my-section"
+         style="background-color: rgba(255,0,9,0.25); display: none">
         <p class="w3-center w3-xxlarge">
             <i class="fas fa-search"></i>
         </p>
@@ -241,7 +278,18 @@
             <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
                 <div class="w3-container w3-card-4 w3-round-xlarge">
                     <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
-                    <pre id="searchFormResult">Result will be shown here.</pre>
+                    <div id="searchFormResultStatus"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-green w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="searchFormResultMessage"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-red w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="searchFormResultData"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-blue w3-round-xlarge"
+                         style="display: none">
+                    </div>
                 </div>
             </div>
         </div>

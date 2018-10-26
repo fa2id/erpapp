@@ -55,7 +55,7 @@
     </div>
 
     <div id="place" class="w3-container w3-margin w3-card-4 my-section"
-         style="background-color: rgba(255,172,0,0.25)">
+         style="background-color: rgba(255,172,0,0.25); display: none">
         <p class="w3-center w3-xxlarge">
             <i class="fas fa-cart-arrow-down"></i>
         </p>
@@ -64,22 +64,26 @@
         <div class="w3-cell-row w3-margin-bottom w3-margin-top">
             <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
 
-                <form id="placeForm" class="w3-container w3-card-4 w3-round-xlarge" action="/sales/orders/v1/place" method="post"
+                <form id="placeForm" class="w3-container w3-card-4 w3-round-xlarge" action="/sales/orders/v1/place"
+                      method="post"
                       style="background-color: rgba(255,251,255,0.5);">
                     <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
                         Customer Info</h3>
                     <p>
-                        <input id="customerEmailInput" class="w3-input w3-hover-shadow" name="customerEmail" type="email"
+                        <input id="customerEmailInput" class="w3-input w3-hover-shadow" name="customerEmail"
+                               type="email"
                                style="width:90%" title="customerEmail" required>
                         <label>Customer Email</label></p>
 
                     <p>
-                        <input id="customerFirstNameInput" class="w3-input w3-hover-shadow" name="customerFirstName" type="text"
+                        <input id="customerFirstNameInput" class="w3-input w3-hover-shadow" name="customerFirstName"
+                               type="text"
                                style="width:90%" title="customerFirstName" required>
                         <label>Customer First Name</label></p>
 
                     <p>
-                        <input id="customerLastNameInput" class="w3-input w3-hover-shadow" name="customerLastName" type="text"
+                        <input id="customerLastNameInput" class="w3-input w3-hover-shadow" name="customerLastName"
+                               type="text"
                                style="width:90%" title="customerLastName" required>
                         <label>Customer Last Name</label></p>
 
@@ -92,10 +96,18 @@
                         </select><br>
                         <label for="itemIdPlaceSelect">Item ID</label></p>
 
-                    <p><b>Item Name: </b><small id="placeItemName"></small></p>
-                    <p><b>Item Price: </b><small id="placeItemPrice"></small></p>
-                    <p><b>Item Category: </b><small id="placeItemCategory"></small></p>
-                    <p><b>Available Quantity: </b><small id="placeAvailableQuantity"></small></p>
+                    <p><b>Item Name: </b>
+                        <small id="placeItemName"></small>
+                    </p>
+                    <p><b>Item Price: </b>
+                        <small id="placeItemPrice"></small>
+                    </p>
+                    <p><b>Item Category: </b>
+                        <small id="placeItemCategory"></small>
+                    </p>
+                    <p><b>Available Quantity: </b>
+                        <small id="placeAvailableQuantity"></small>
+                    </p>
 
 
                     <p>
@@ -116,7 +128,18 @@
             <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
                 <div class="w3-container w3-card-4 w3-round-xlarge">
                     <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
-                    <pre id="placeFormResult">Result will be shown here.</pre>
+                    <div id="placeFormResultStatus"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-green w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="placeFormResultMessage"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-red w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="placeFormResultData"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-blue w3-round-xlarge"
+                         style="display: none">
+                    </div>
                 </div>
             </div>
         </div>
@@ -124,7 +147,7 @@
     </div>
 
     <div id="cancel" class="w3-container w3-margin w3-card-4 my-section"
-         style="background-color: rgba(202,0,255,0.25)">
+         style="background-color: rgba(202,0,255,0.25); display: none">
         <p class="w3-center w3-xxlarge">
             <i class="fas fa-trash-alt"></i>
         </p>
@@ -156,14 +179,25 @@
             <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
                 <div class="w3-container w3-card-4 w3-round-xlarge">
                     <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
-                    <pre id="cancelFormResult">Result will be shown here.</pre>
+                    <div id="cancelFormResultStatus"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-green w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="cancelFormResultMessage"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-red w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="cancelFormResultData"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-blue w3-round-xlarge"
+                         style="display: none">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="orders" class="w3-container w3-margin w3-margin w3-card-4 my-section"
-         style="background-color: rgba(10,255,0,0.25)">
+         style="background-color: rgba(10,255,0,0.25); display: none">
         <p class="w3-center w3-xxlarge">
             <i class="fas fa-th-list"></i>
         </p>
@@ -194,7 +228,18 @@
             <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
                 <div class="w3-container w3-card-4 w3-round-xlarge">
                     <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Order Result</h3>
-                    <pre id="orderFormResult">Result will be shown here.</pre>
+                    <div id="orderFormResultStatus"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-green w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="orderFormResultMessage"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-red w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="orderFormResultData"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-blue w3-round-xlarge"
+                         style="display: none">
+                    </div>
                 </div>
             </div>
         </div>
@@ -217,14 +262,25 @@
             <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
                 <div class="w3-container w3-card-4 w3-round-xlarge">
                     <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Orders Result</h3>
-                    <pre id="ordersFormResult">Result will be shown here.</pre>
+                    <div id="ordersFormResultStatus"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-green w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="ordersFormResultMessage"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-red w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="ordersFormResultData"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-blue w3-round-xlarge"
+                         style="display: none">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="search" class="w3-container w3-margin w3-margin w3-card-4 my-section"
-         style="background-color: rgba(255,0,95,0.25)">
+         style="background-color: rgba(255,0,95,0.25); display: none">
         <p class="w3-center w3-xxlarge">
             <i class="fas fa-search"></i>
         </p>
@@ -265,7 +321,18 @@
             <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
                 <div class="w3-container w3-card-4 w3-round-xlarge">
                     <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">Result</h3>
-                    <pre id="searchFormResult">Result will be shown here.</pre>
+                    <div id="searchFormResultStatus"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-green w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="searchFormResultMessage"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-red w3-round-xlarge"
+                         style="display: none">
+                    </div>
+                    <div id="searchFormResultData"
+                         class="w3-panel w3-card-4 w3-leftbar w3-opacity-min w3-pale-blue w3-round-xlarge"
+                         style="display: none">
+                    </div>
                 </div>
             </div>
         </div>

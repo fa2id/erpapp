@@ -1,6 +1,5 @@
 package com.fa2id.erpapp.controller;
 
-import com.fa2id.erpapp.model.Order;
 import com.fa2id.erpapp.model.User;
 import com.fa2id.erpapp.service.UserService;
 import com.fa2id.erpapp.utils.MyJsonProtocol;

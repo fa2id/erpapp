@@ -11,7 +11,7 @@ $(document).ready(function () {
         $($(this).attr("href")).fadeIn(3000);
     });
 
-    $(".my-section").hide();
+    //$(".my-section").hide();
     $("#main").fadeIn();
 
     $("form").submit(function (e) {
@@ -19,14 +19,47 @@ $(document).ready(function () {
         const form = $(this);
         const url = form.attr('action');
         const id = "#" + form.attr('id') + "Result";
+        const status = $(id + "Status");
+        const message = $(id + "Message");
+        const resultData = $(id + "Data");
         const method = form.attr('method').toUpperCase();
-
+        status.fadeOut();
+        message.fadeOut();
+        resultData.fadeOut();
         $.ajax({
             type: method,
             url: url,
             data: form.serialize(),
             success: function (data) {
-                $(id).html(JSON.stringify(data, null, '  '));
+                console.log(data);
+                status.html("<h4>STATUS</h4><p>" + data.status + "</p>");
+                message.html("<h4>MESSAGE</h4><p>" + data.message + "</p>");
+                let inResultDataHtml = "";
+                if (Array.isArray(data.result)) {
+                    data.result.forEach(function (obj) {
+                        let inResultDataHtmlTemp = '<div ' +
+                            'class="w3-panel w3-card-4 w3-opacity-min w3-pale-blue w3-round-xlarge">';
+                        Object.keys(obj).forEach(function (key) {
+                            inResultDataHtmlTemp += "<p>" + key + ": " + obj[key] + "</p>";
+                        });
+                        inResultDataHtmlTemp += "</div>";
+                        inResultDataHtml += inResultDataHtmlTemp;
+                    });
+                    resultData.addClass("resultDataArray");
+                } else {
+                    let inResultDataHtmlTemp = '<div ' +
+                        'class="w3-panel w3-card-4 w3-opacity-min w3-pale-blue w3-round-xlarge">';
+                    Object.keys(data.result).forEach(function (key) {
+                        inResultDataHtmlTemp += "<p>" + key + ": " + data.result[key] + "</p>";
+                    });
+                    inResultDataHtmlTemp += "</div>";
+                    inResultDataHtml += inResultDataHtmlTemp;
+                    resultData.removeClass("resultDataArray");
+                }
+                resultData.html("<h4>RESULT</h4>" + inResultDataHtml);
+                status.fadeIn(1000);
+                message.fadeIn(2000);
+                resultData.fadeIn(3000);
             }
         });
         form[0].reset();
