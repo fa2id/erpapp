@@ -3,6 +3,7 @@ $(document).ready(function () {
     $("a[href^='#']").click(function (e) {
         getOrderIds();
         getItemIds();
+        removeItemFieldsInPlaceOrder();
         e.preventDefault();
         $("#main").hide();
         $(".my-section").hide();
@@ -141,6 +142,14 @@ $(document).ready(function () {
             }
         }
     );
+
+    function  removeItemFieldsInPlaceOrder(){
+        $("#placeAvailableQuantity").html("");
+        $("#placeItemName").html("");
+        $("#placeItemPrice").html("");
+        $("#placeItemCategory").html("");
+        $("input[name='itemQuantity']").prop('max', 100000);
+    }
 
     $("#customerEmailInput").change(
         function () {
