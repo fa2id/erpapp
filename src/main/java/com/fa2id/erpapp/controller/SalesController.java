@@ -161,7 +161,7 @@ public class SalesController {
     }
 
 
-    @RequestMapping(value = "/orders/v1/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/orders/v1/delete", method = {RequestMethod.POST, RequestMethod.DELETE})
     @ResponseBody
     public ObjectNode cancelOrder(int orderId) {
         String message;

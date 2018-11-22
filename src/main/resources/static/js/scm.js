@@ -1,9 +1,16 @@
 $(document).ready(function () {
 
 
+    function removeEditItemFields() {
+        $("#editItemName").val("");
+        $("#editItemPrice").val("");
+        $("#editItemQuantity").val("");
+    }
+
     $("a[href^='#']").click(function (e) {
         getCategories();
         getItemIds();
+        removeEditItemFields();
         e.preventDefault();
         $("#main").hide();
         $(".my-section").hide();

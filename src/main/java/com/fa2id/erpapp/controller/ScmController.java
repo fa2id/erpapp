@@ -112,7 +112,7 @@ public class ScmController {
 
     @RequestMapping(
             value = "/items/v1/edit",
-            method = RequestMethod.POST)
+            method = {RequestMethod.POST, RequestMethod.PUT})
     @ResponseBody
     public ObjectNode editItem(Item item, String categoryName) {
         Item existedItem = itemService.getItem(item.getItemId());
