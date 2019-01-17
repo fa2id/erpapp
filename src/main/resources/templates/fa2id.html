@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FA2ID | FARID ARIAFARD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, user-scalable=0;">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../static/js/scm.js" th:src="@{/js/scm.js}"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/w3.css" th:href="@{/css/w3.css}">
+    <link rel="stylesheet" href="../static/css/erpapp.css" th:href="@{/css/erpapp.css}">
+    <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
+
+</head>
+<body>
+
+<div class="w3-top">
+    <div class="w3-bar w3-black w3-card-4 w3-opacity-min">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+           href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fas fa-bars"></i>
+        </a>
+        <a href="#add" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PROFILE</a>
+        <a href="#remove" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PROJECTS</a>
+        <a href="#edit" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
+        <a href="#search" class="w3-bar-item w3-button w3-padding-large w3-hide-small">RESUME</a>
+        <a href="http://fa2id.com" class="w3-padding-large w3-hide-small w3-right" style="text-decoration: none">
+            FA2ID | FARID ARIAFARD
+        </a>
+    </div>
+</div>
+
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top w3-opacity-min" style="margin-top:46px">
+    <a href="#add" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">PROFILE</a>
+    <a href="#remove" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">PROJECTS</a>
+    <a href="#edit" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
+    <a href="#search" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">RESUME</a>
+    <a href="http://fa2id.com" class="w3-padding-large w3-button">
+        FA2ID | FARID ARIAFARD
+    </a>
+</div>
+
+<div style="margin-top: 50px;">
+    <div id="main" class="w3-container w3-margin w3-card-4" style="background-color: rgba(255,172,0,0.25)">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-laptop-code"></i>
+        </p>
+        <h3 class="w3-center">FA2ID</h3>
+        <hr>
+        <p class="w3-center">
+            FARID ARIAFARD<br>
+            PERSONAL WEB SITE
+        </p>
+    </div>
+
+    <div id="add" class="w3-container w3-margin w3-card-4 my-section"
+         style="background-color: rgba(255,172,0,0.25); display: none">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-user"></i>
+        </p>
+        <h3 class="w3-center">PROFILE</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                <img th:src="@{/images/Farid-2016.jpeg}" class="w3-image" style="max-width: 100%;">
+            </div>
+            <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
+                <p>
+                    My name is Farid Ariafard, and I am a software engineer.
+                    I have studied Computer Science and I obtained my Master degree from Concordia University, Montreal
+                    , QC, Canada. Currently, I live in Vancouver, BC.<br><br>
+
+                    This is my personal web site, and you can find some information about me.
+                    If you want to know me more, you can read more details on my LinkedIn.<br>
+                    <a href="https://www.linkedin.com/in/fa2id/" class="w3-center w3-xxxlarge" style="color: #3f51b5">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="remove" class="w3-container w3-margin w3-card-4 my-section"
+         style="background-color: rgba(0,93,221,0.4); display: none">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-project-diagram"></i>
+        </p>
+        <h3 class="w3-center">PROJECTS</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                fa2id
+                </h3><br>
+                Sep 2018 – Present<br>
+                <br>
+                This is a project for my website and application. It is a web application.<br>
+                <br>
+                (www.fa2id.com)<br>
+                <br>
+                Technologies:<br>
+                <br>
+                1- Java<br>
+                2- Rest<br>
+                3- Spring<br>
+                4- Spring Boot<br>
+                5- Spring Rest<br>
+                6- Spring Security<br>
+                7- JavaScript<br>
+                8- Bootstrap 4<br>
+                9- W3.CSS<br>
+                10- HTML 5<br>
+                11- MySQL<br>
+                12- Android Studio<br>
+                13- Git<br>
+                14- JSON<br>
+                15- AJAX<br>
+                <br>
+                <br>
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    OlO Clash</h3><br>
+                Jan 2018 – Present<br>
+                <br>
+                OlO Clash is a mobile game. This is a kind of adversary games which two players have to compete. One of the features of this game is the multiplayer part of the game. This is a 3d game, and the technologies we are using are:
+                <br><br>
+                Unity Game Engine<br>
+                C# programming language<br>
+                Java<br>
+                Spring Boot<br>
+                Spring Rest<br>
+                Spring Security<br>
+                Spring Data<br>
+                MySQL<br>
+                Network<br>
+                <br>
+                This game will be available in Google Play Store for Android users and Apple Store for iOS users.<br>
+                <br><br>
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    ERP Web and Android Application</h3><br>
+                Sep 2018 – Dec 2018<br>
+                <br>
+                This is an academic project at Concordia University. It has a Rest API for the backend. For the front end, there are web and Android versions.
+                <br><br>
+                Technologies used in this project:<br>
+                <br>
+                Java<br>
+                JavaScript<br>
+                HTML<br>
+                CSS<br>
+                AWS<br>
+                Docker<br>
+                Amazon EC2<br>
+                Amazon ElasticBeans<br>
+                Amazon CodeBuild<br>
+                Amazon Code Pipeline<br>
+                Git<br>
+                Spring Boot<br>
+                Spring Rest<br>
+                Spring Security<br>
+                Spring Data<br>
+                JQuery<br>
+                AJAX<br>
+                Android Studio<br>
+                MySQL<br>
+                <br>
+                Project running on:<br>
+                http://erpapp-env.wgjamxmpdp.us-east-2.elasticbeanstalk.com<br>
+                <br>
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    Digit Recognition - Machine Learning</h3><br>
+                Jul 2018 – Aug 2018<br>
+                <br>
+                This is an academic project for the course Machine Learning at Concordia University.<br>
+                <br>
+                This is a program helping to predict the new handwritten digits given to the system.<br>
+                <br>
+                Two approaches have been implemented in this program:<br>
+                1- Naïve Bayes Classification<br>
+                2- Decision Tree<br>
+                3- KNN<br>
+                4- SVM<br>
+                <br>
+                <br>
+                The program is able to read from a training data set in order to learn and predict the new digits given to the program. Also, it is able to compare the performance of classification methods on different size of data in terms of time execution and error. The MNIST digit recognition dataset has been used for training.
+                <br><br>
+                Python<br>
+                Matlab<br><br>
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    Distributed Room Reservation System</h3><br>
+                Sep 2017 – Jan 2018<br>
+                <br>
+                This is an academic project at Concordia University for the course COMP6231 Distributed System Design.
+                <br><br>
+                The main goal of the project was to implements a synchronized multithreaded system with three servers each representing a campus. There are 2 different clients in this program who can connect and use the system such as students and administrators.
+                <br><br>
+                Handling crash and software failures using replicas and replica managers.
+                <br><br>
+                Administrators can make and delete rooms for every campus.<br>
+                Students can book a room, cancel or change their bookings.<br>
+                <br>
+                Servers are connected together using UDP (reliable UDP), and clients are connected to the servers using JavaRMI and CORBA.
+                <br><br>
+                Technologies used in this project:<br>
+                <br>
+                - Java<br>
+                - JavaRMI<br>
+                - CORBA<br>
+                - UDP<br>
+                - RUDP<br>
+                - GSON<br>
+                <br>
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    Artificial Intelligence Game (Bonzee)</h3><br>
+                Oct 2017 – Dec 2017<br>
+                <br>
+                This is an academic project (a game) for the course Artificial Intelligence COMP 6721 at Concordia University.
+                <br><br>
+                The main goal of the project is to make an adversary game (board game) with 2 players (Human vs AI). The challenge is to implement MINIMAX algorithm with Alpha-Beta pruning using the best heuristic for the AI to play and win.
+                <br><br>
+                Technology:<br>
+                <br>
+                Java<br>
+                JavaFX<br>
+                XML<br>
+                <br>
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    Authentication Application</h3><br>
+                Jul 2017 – Aug 2017<br>
+                <br>
+                This is a JavaFX application for authentication.<br><br>
+                The features in this application are:<br>
+                - User Registration using a form. (MySQL database, Encrypting password with salting and SHA-512)<br>
+                - Login form<br>
+                - Forget Password form with sending verification code to email (SMTP, requesting verification code to change password on the current scene<br>
+                - A simple profile which reads news from DB and other things such as changing the password, changing user information<br>
+                - Simple note saver for each user in the profile<br>
+                - With new material design and animation library using JFOENIX<br>
+                <br>
+                Technologies:<br>
+                - Java<br>
+                - JavaFX<br>
+                - XML<br>
+                - MySQL<br>
+                <br>
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    Piedra Iberica Rest API</h3><br>
+                May 2017 – Aug 2017<br>
+                <br>
+                Piedra Iberica is a company located in Spain, and this project is a Rest API which is used for catalogs.<br>
+                <br>
+                Technologies to be used in this project:<br>
+                <br>
+                Java<br>
+                Spring Boot<br>
+                Spring Rest<br>
+                Spring Security<br>
+                MySQL<br>
+                <br>
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    Knights vs Aliens</h3><br>
+                Jan 2017 – Apr 2017<br>
+                <br>
+                This is an academic project (3D Game) for the course Advanced Game Development COMP6331 at Concordia University.<br>
+                <br>
+                The game is made by Unity game engine, and we have used C# as our preferred programming language for scripting and implementing various algorithms.
+                <br><br>
+                Genre: Tower Defense<br>
+                <br>
+                Setting: Medieval fantastic with alien invasion<br>
+                <br>
+                Summary: The players will build towers in order to help him defend against a horde of alien from destroying the castle. The can player creates a maze to lengthen the path the alien will have to take to reach the castle while waves of aliens will keep pushing forward to reach their goal.
+                <br><br>
+                Mechanics: Resource collection - Creating and upgrading Towers using resources to defend the castle - Building a maze to maximize the efficiency of the towers - Build phase to plane the maze - defense phase where waves of enemies tries to reach the castle
+                <br><br>
+                Movement AI: Steering Behaviour(wall avoidance, arrive, seek, flee, wander)<br>
+                Path-Finding: A* pathfinding through the grid based level and partial pathfinding<br>
+                Decision-Making: Finite State Machine<br>
+                Other features: Fuzzy Logic<br>
+                <br>
+                *** This game ranked as the second game between 15 games created by 15 groups of students with game programming background
+                <br><br>
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    3D Multiplayer PACMAN</h3><br>
+                Mar 2017<br>
+                <br><br>
+                This is an academic project (3D multiplayer game) for the course Advanced Game Development COMP6331 at Concordia University.
+                <br><br>
+                This game is made by Unity game engine and C# programming language. For networking, Unity networking has been used in order to connect the players as different Pacman.
+                <br><br>
+                The main objective of this project was to implement pathfinding for the NPCs to catch each player and using the network to connect players in order to compete in eating coins.
+                <br><br>
+                UI designing was one of the requirements in this project.
+                <br><br>
+                Pathfinding game<br>
+                Mar 2017<br>
+                <br>
+                This is an academic project (2.5D game) for the course Advanced Game Development COMP6331 at Concordia University.
+                <br><br>
+                This game is made by Unity game engine and C# programming language. The main purpose of this project was to implement different pathfinding algorithms, such as A* and Dijkstra.
+                <br><br>
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    Capture the Flag</h3><br>
+                Feb 2017<br>
+                <br>
+                This is an academic project (3D game) for the course Advanced Game Development COMP6331 at Concordia University.
+                <br><br>
+                This game is made by Unity game engine and C#.
+                <br><br>
+                The main objective of this project was to implement different movements for characters and a set of heuristics widely used by game developers for the movement of human characters while trying to reach a target.
+                <br><br>
+                Behaviours implemented in this project:<br>
+                Kinematic and Steering (wander, seek, arrive, flee, evade and pursue)<br>
+                <br>
+                This project evaluated as first 5 projects between 60 projects by students in the Advanced Game Development class at Concordia University.
+                <br><br>
+                Sorting Algorithms and Memory Management<br>
+                Feb 2017<br>
+                <br>
+                This is an academic project for the course Advanced Database Technology and Application COMP6521 at Concordia University.
+                <br><br>
+                This project had been written in Java programming language and the main objective of this project was to implement the fastest algorithm to sort and merge database having limited memory. Different sorting algorithms have been used such as TPMMS and etc.
+                <br><br>
+                *** The winner project between 13 projects submitted by 13 groups of graduate students in terms of complexity and performance.
+                <br><br>
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    AspectJ Logging</h3><br>
+                Oct 2016<br>
+                <br>
+                This is an academic project for the course Advanced Programming Practices SOEN6441 at Concordia University.
+                <br><br>
+                The main purpose of the project was for implementing a very simple client-server based java classes in order to log and change the codes by AspectJ programming language.
+                <br>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="edit" class="w3-container w3-margin w3-margin w3-card-4 my-section"
+         style="background-color: rgba(10,255,0,0.25); display: none">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-edit"></i>
+        </p>
+        <h3 class="w3-center">CONTACT</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
+                <div class="w3-container w3-card-4 w3-round-xlarge">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">EMAIL</h3>
+                    faridsenior@gmail.com<br>
+                    info@fa2id.com<br>
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">SOCIAL ACCOUNTS</h3>
+                    <p class="w3-center">
+                        <a href="https://www.linkedin.com/in/fa2id/" class="w3-center w3-xxxlarge" style="color: #3f51b5"><i class="fab fa-linkedin"></i></a><br>
+                        <a href="https://github.com/fa2id" class="w3-center w3-xxxlarge" style="color: black">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="search" class="w3-container w3-margin w3-margin w3-card-4 my-section"
+         style="background-color: rgba(255,0,9,0.25); display: none">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-file"></i>        </p>
+        <h3 class="w3-center">RESUME</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+
+            <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
+                <div class="w3-container w3-card-4 w3-round-xlarge w3-center">
+                    <br>If you want to see the PDF version you can
+                    <a th:href="@{/images/Resume.pdf}" target="_blank">CLICK HERE!</a>
+                    <br>
+                    <br>
+
+                    <img th:src="@{/images/Resume.jpg}" class="w3-image" style="max-width: 100%;">
+
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function myFunction() {
+        const x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") === -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+</body>
+</html>

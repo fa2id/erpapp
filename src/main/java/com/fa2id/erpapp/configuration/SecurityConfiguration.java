@@ -39,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.
                 authorizeRequests()
-                .antMatchers("/login","/login/default")
+                .antMatchers("/login","/login/default","/fa2id")
                     .permitAll()
                 .antMatchers("/scm/items/**")
                     .hasAnyAuthority("SALES", "SCM")
