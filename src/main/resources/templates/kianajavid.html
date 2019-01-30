@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KIANA JAVID | PORTFOLIO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, user-scalable=0;">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../static/js/scm.js" th:src="@{/js/scm.js}"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/w3.css" th:href="@{/css/w3.css}">
+    <link rel="stylesheet" href="../static/css/erpapp.css" th:href="@{/css/erpapp.css}">
+    <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
+
+</head>
+<body>
+
+<div class="w3-top">
+    <div class="w3-bar w3-black w3-card-4 w3-opacity-min">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+           href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fas fa-bars"></i>
+        </a>
+        <a href="#add" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PROFILE</a>
+        <a href="#remove" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PROJECTS</a>
+        <a href="#edit" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
+        <a href="#search" class="w3-bar-item w3-button w3-padding-large w3-hide-small">RESUME</a>
+        <a href="http://kianajavid.com" class="w3-padding-large w3-hide-small w3-right" style="text-decoration: none">
+            KIANA JAVID | PORTFOLIO
+        </a>
+    </div>
+</div>
+
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top w3-opacity-min" style="margin-top:46px">
+    <a href="#add" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">PROFILE</a>
+    <a href="#remove" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">PROJECTS</a>
+    <a href="#edit" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
+    <a href="#search" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">RESUME</a>
+    <a href="http://kianajavid.com" class="w3-padding-large w3-button">
+        KIANA JAVID | PORTFOLIO
+    </a>
+</div>
+
+<div style="margin-top: 50px;">
+    <div id="main" class="w3-container w3-margin w3-card-4" style="background-color: rgba(255,172,0,0.25)">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-laptop-code"></i>
+        </p>
+        <h3 class="w3-center">K I A N A</h3>
+        <hr>
+        <p class="w3-center">
+            KIANA JAVID<br>
+            PERSONAL WEB SITE
+        </p>
+    </div>
+
+    <div id="add" class="w3-container w3-margin w3-card-4 my-section"
+         style="background-color: rgba(255,172,0,0.25); display: none">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-user"></i>
+        </p>
+        <h3 class="w3-center">PROFILE</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                <img th:src="@{/images/kiana/kiana-javid.jpg}" class="w3-image" style="max-width: 100%;">
+            </div>
+            <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
+                <p>
+                    <h1>Kiana Javid</h1><br>
+                    <h3>Architectural Design, Interior Design & Construction Management</h3><br><br>
+
+                    I'm a multidimensional and creative young professional who is passionate about Architecture, Interior Design, Construction Management.
+                    <br><br>
+                    Currently I'm looking for new opportunities.
+                    <br><br>
+                    I have recently achieved a master's degree in Construction Management at Concordia University in Montreal, Quebec. Previously, I obtained a bachelor's degree in Architectural Engineering.
+                    <br><br>
+                    I've started my career as an architect intern in 2012 which gave me valuable experience.
+                    <br><br>
+                    My infinite bucket list still seems empty in my eyes and I will never give up checking them all.<br><br>
+
+                    This is my personal web site, and you can find some information about me.
+                    If you want to know me more, you can read more details on my LinkedIn.<br>
+                    <a href="https://www.linkedin.com/in/kiana-javid/" class="w3-center w3-xxxlarge" style="color: #3f51b5">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="remove" class="w3-container w3-margin w3-card-4 my-section"
+         style="background-color: rgba(0,222,214,0.4); display: none">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-project-diagram"></i>
+        </p>
+        <h3 class="w3-center">PROFESSIONAL PROJECTS</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    Markis Shopping Center
+                </h3><br><br>
+                Designed by Markis Group, The Spot is a new commercial building in Tehran’s Grand Bazaar that brings
+                residences to an area surrounded by 72 boutiques. In this project I was in charge of designing a
+                4-storey commercial building. Having an effective communication plays a vital role in this project due
+                to the limitation of the site. As a junior architect of a design team,
+                I was responsible for preparing drawings using AutoCAD and Revit, and developing renderings.
+                <br><br>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Markis Shopping Center/Markis Shopping Center 1.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Markis Shopping Center/Markis Shopping Center 2.jpg}" class="w3-image" style="max-width: 100%;">
+                </div><br>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Markis Shopping Center/Markis Shopping Center 3.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Markis Shopping Center/Markis Shopping Center 4.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <br><br>
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    Javid Restaurant</h3><br>
+                <br><br>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Javid Restaurant/Javid Restaurant 1.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Javid Restaurant/Javid Restaurant 2.jpg}" class="w3-image" style="max-width: 100%;">
+                </div><br>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Javid Restaurant/Javid Restaurant 3.png}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <br><br>
+
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    Nabi Apartment</h3><br>
+                <br><br>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Nabi Apartment/Nabi Apartment 1.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Nabi Apartment/Nabi Apartment 2.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <br><br>
+
+            </div>
+        </div>
+        <hr>
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-project-diagram"></i>
+        </p>
+        <h3 class="w3-center">ACADEMIC PROJECTS</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    Residential Complex</h3>
+                <br><br>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Residential Complex/Residential Complex 1.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Residential Complex/Residential Complex 2.jpg}" class="w3-image" style="max-width: 100%;">
+                </div><br>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Residential Complex/Residential Complex 3.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Residential Complex/Residential Complex 4.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <br><br>
+
+
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    Hotel Design</h3>
+                <br><br>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Hotel/Hotel 1.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Hotel/Hotel 2.jpg}" class="w3-image" style="max-width: 100%;">
+                </div><br>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Hotel/Hotel 3.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Hotel/Hotel 4.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <br><br>
+
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    Museum Design</h3>
+                <br><br>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Museum/Museum Design 1.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Museum/Museum Design 2.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <br><br>
+
+
+            </div>
+        </div>
+        <hr>
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-project-diagram"></i>
+        </p>
+        <h3 class="w3-center">SKETCHES AND FREEHAND</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">
+                    Sketches and Freehand</h3>
+                <br><br>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Sketches Freehand/Sketches Freehand 1.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Sketches Freehand/Sketches Freehand 2.jpg}" class="w3-image" style="max-width: 100%;">
+                </div><br>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Sketches Freehand/Sketches Freehand 3.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <div class="w3-container w3-cell w3-animate-zoom w3-mobile">
+                    <img th:src="@{/images/kiana/Sketches Freehand/Sketches Freehand 4.jpg}" class="w3-image" style="max-width: 100%;">
+                </div>
+                <br><br>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="edit" class="w3-container w3-margin w3-margin w3-card-4 my-section"
+         style="background-color: rgba(10,255,0,0.25); display: none">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-edit"></i>
+        </p>
+        <h3 class="w3-center">CONTACT</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+            <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
+                <div class="w3-container w3-card-4 w3-round-xlarge">
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">EMAIL</h3>
+                    javid.kiana@gmail.com<br>
+                    <h3 class="w3-container w3-center w3-card-4 w3-padding w3-white w3-opacity-max">SOCIAL ACCOUNTS</h3>
+                    <p class="w3-center">
+                        <a href="https://www.linkedin.com/in/kiana-javid/" class="w3-center w3-xxxlarge" style="color: #3f51b5"><i class="fab fa-linkedin"></i></a><br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="search" class="w3-container w3-margin w3-margin w3-card-4 my-section"
+         style="background-color: rgba(255,0,9,0.25); display: none">
+        <p class="w3-center w3-xxlarge">
+            <i class="fas fa-file"></i>        </p>
+        <h3 class="w3-center">RESUME</h3>
+        <hr>
+        <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+
+            <div class="w3-container w3-cell w3-margin-top w3-animate-zoom w3-mobile">
+                <div class="w3-container w3-card-4 w3-round-xlarge w3-center">
+                    <br>If you want to see the PDF version you can
+                    <a th:href="@{/images/kiana/resume/kiana-javid-resume.pdf}" target="_blank">CLICK HERE!</a>
+                    <br>
+                    <br>
+
+                    <img th:src="@{/images/kiana/resume/kiana-javid-resume.jpg}" class="w3-image" style="max-width: 100%;">
+
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function myFunction() {
+        const x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") === -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+</body>
+</html>
